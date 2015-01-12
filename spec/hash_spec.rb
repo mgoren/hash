@@ -19,12 +19,19 @@ describe(MyHash) do
       expect(test_hash.fetch("dog")).to(eq("awesome"))
     end
 
-    it("stores each key as unique") do
+    it("replaces key with new key pair") do
       test_hash = MyHash.new()
       test_hash.store("elephant","regal")
       test_hash.store("elephant","big")
-      expect(test_hash.fetch("elephant")).to(eq("regal"))
+      expect(test_hash.fetch("elephant")).to(eq("big"))
     end
 
+    it("returns the entire hash for viewing") do
+      test_hash = MyHash.new()
+      test_hash.store("elephant","regal")
+      test_hash.store("dog","awesome")
+      test_hash.store("turtle","slow")
+      expect(test_hash.view_hash()).to(eq("{ elephant=>regal, dog=>awesome, turtle=>slow }"))
+    end
   end
 end
